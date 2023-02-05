@@ -40,6 +40,7 @@ class MainWindow(wx.Frame):
 
         # MENUBAR: PLAYER INFO, PLAY A GAME, SETTINGS
         menubar = wx.MenuBar()
+        menubar.Append(wx.Menu(), 'Home')
         menubar.Append(player, 'Player Info')
         menubar.Append(games, 'Play a Game')
         menubar.Append(settings, 'Settings')
