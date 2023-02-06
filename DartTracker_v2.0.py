@@ -23,11 +23,7 @@ class MainWindow(wx.Frame):
     def menu_items(self, menu, elements):
         for element in elements:
             menu.Append(element[0], element[1], element[2])
-            self.Bind(wx.EVT_MENU, self.menu_click, menu)
-            
-    def menu_click(self, event):
-        if event == '&Quit':
-            self.Close(True)
+            self.Bind(wx.EVT_LEFT_DOWN, btn_click, menu)
     
     def create_menu(self):
         # Creating the menu options on the main menu bar
@@ -53,6 +49,10 @@ class MainWindow(wx.Frame):
         self.SetMenuBar(menubar)
         self.Show()
 
+
+def btn_click(clicked):
+    if clicked == '&Quit':
+        window.Close()
 
 # Main loop of the application
 app = wx.App(False)
