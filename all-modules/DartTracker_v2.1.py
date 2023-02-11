@@ -1,5 +1,7 @@
-import wx
+import wx 
 
+
+# Creating the lists with info on the menu item group into tuples
 player_tuple = [(wx.ID_ANY, '&Login', 'Log into your player profile'), (wx.ID_ANY, '&Profile', 'Access and change '
                 'your profile information'), (wx.ID_ANY, '&Stats', 'Access past and present season stats'),
                 (wx.ID_ANY, '&Logout', 'Log out of your player profile')]
@@ -8,21 +10,22 @@ playgame_tuple = [(wx.ID_ANY, '&Practice', 'Different types of practices to perf
 settings_tuple = [(wx.ID_ABOUT, '&About', 'Information about the program'), (wx.ID_ANY, '&Settings',
                   'Change program settings'), (wx.ID_EXIT, '&Quit', 'Quit the program')]
 
-
-# Loop through to create menu elements
-def menu_items(menu, elements):
-    for element in elements:
-        menu.Append(element[0], element[1], element[2])
+teamname = 'The Breakfast Club'
 
 
 # Setting up the main window
 class MainWindow(wx.Frame):
     def __init__(self, parent, title):
-        wx.Frame.__init__(self, parent, title=title, size=(950, 600))
+        super(MainWindow, self).__init__(parent, title=title, size=(1000, 800))
         self.Centre()
         self.CreateStatusBar()
         self.create_menu()
 
+    # Loop through to create menu elements
+    def menu_items(self, menu, elements):
+        for element in elements:
+            menu.Append(element[0], element[1], element[2])
+    
     def create_menu(self):
         # Creating the menu options on the main menu bar
         player = wx.Menu()
@@ -30,13 +33,13 @@ class MainWindow(wx.Frame):
         settings = wx.Menu()
 
         # PLAYER menu: LOGIN, PROFILE, STATS, LOGOUT
-        menu_items(player, player_tuple)
+        self.menu_items(player, player_tuple)
 
         # PLAY A GAME menu: PRACTICE, CRICKET, '01
-        menu_items(games, playgame_tuple)
+        self.menu_items(games, playgame_tuple)
 
         # SETTINGS menu: ABOUT, SETTINGS, QUIT
-        menu_items(settings, settings_tuple)
+        self.menu_items(settings, settings_tuple)
 
         # MENUBAR: PLAYER INFO, PLAY A GAME, SETTINGS
         menubar = wx.MenuBar()
@@ -46,9 +49,9 @@ class MainWindow(wx.Frame):
         menubar.Append(settings, 'Settings')
         self.SetMenuBar(menubar)
         self.Show()
-
+        
 
 # Main loop of the application
 app = wx.App(False)
-window = MainWindow(None, 'The Breakfast Club Dart Tracker')
+window = MainWindow(None, f"{teamname} Dart Tracker")
 app.MainLoop()
