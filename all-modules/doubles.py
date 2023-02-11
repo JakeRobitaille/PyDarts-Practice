@@ -4,19 +4,16 @@ class DART_BOARD:
         self.board.append('Bull')
         self.type = type
     
-    def BullCout(self, throws):
+    def double(self, throws):
         points_total = 0
         
         
-    def PracticeDict(self, pracType):
+    def practice_dict(self):
         self.board
-        if pracType == 'Doubles':
-            pass
-        elif pracType == 'Triples':
-            pass  
+        dartThrows = []    
         
         # while throws > 0:
-        #     print('What did you hit? (0-2)?')
+        #     print('How many did you hit (0-2)?')
         #     turnHit = int(input())
         #     points_total += turnHit
         #     throws -= 1
@@ -26,4 +23,4 @@ def menu():
     pass
 
 db = DART_BOARD('Bulls')
-db.BullCount(int(input('How many darts are you throwing for Bull?   ')))
+db.bullCount(int(input('How many darts are you throwing for Bull?   ')))
