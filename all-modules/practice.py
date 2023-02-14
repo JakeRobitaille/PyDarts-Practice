@@ -68,5 +68,5 @@ def main():
     pass
 
 dd = DUB_TRIP()
-game_1 = dd.dart_track('triple')
+game_1 = dd.dart_track('double')
 print(game_1)
