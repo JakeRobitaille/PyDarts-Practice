@@ -32,20 +32,23 @@ class DUB_TRIP():
     def is_hit(self, type, target):
         throwCounter = 1
         hit = False
-            
+        
         while hit == False:
-            answer = input(f'Did you hit the {type} {target}? Y / N \n')
-            check = answer
-            if check == 'n' or 'N':
-                throwCounter += 1
-            elif check== 'y' or 'Y':
+            # Bull has no triple so if the practice type is triple, skips bulls
+            if target == 'Bull' and type == 'triple':
                 hit = True
             else:
-                print('That is not a valid answer, try again:')
+                answer = input(f'Did you hit the {type} {target}? Y / N   -----> ')                
+                if answer == 'n' or answer == 'N':
+                    print(f'You have thrown {throwCounter} darts \n')
+                    throwCounter += 1
+                elif answer == 'y' or answer == 'Y':
+                    print(f'You got the {target} in {throwCounter} dart(s) \n')
+                    hit = True
+                else:
+                    print('That is not a valid answer, try again: \n')
                 
-        return throwCounter
-                
-        
+        return throwCounter   
     
     # Sets up the target number and darts thrown as key : value pairs in a dictionary            
     def dart_track(self, type):
@@ -54,6 +57,9 @@ class DUB_TRIP():
         
         for num in DARTBOARD:
             turns_taken[num] = self.is_hit(type, num)
+
+        if type == 'triple':
+            turns_taken.pop('Bull')
           
         return turns_taken
             
@@ -62,4 +68,5 @@ def main():
     pass
 
 dd = DUB_TRIP()
-print(dd.is_hit('triple', 1))
+game_1 = dd.dart_track('triple')
+print(game_1)
