@@ -29,6 +29,9 @@ class BULLS:
             elif turnHit == 2:
                 print('You hit a Double Bull')
                 self.double += 1
+            else:
+                print('That is not a valid entry, try again.')
+                continue    
             self.total_points += turnHit
             countDown -= 1
             print(f'{countDown} throws left... \n')
@@ -89,11 +92,22 @@ class DUB_TRIP:
 class rand_out:
     def __init__(self):
         self.roll = None
+        self.lowEven = [i for i in range(2, 41) if i % 2 == 0]
+        self.lowOdd = [i for i in range(3, 42) if i % 2 == 1]
+        self.midEven = [i for i in range(42, 61) if i % 2 == 0]
+        self.midOdd = [i for i in range(43, 60) if i % 2 == 1]
+        self.highOut = [i for i in range(61, 99)]
+        self.higherOut = [i for i in range(99, 119)]
+        self.crazyOut = [i for i in range(119, 171) if i != 159 or i != 162 or i != 163 or i != 165 or i != 166 or i != 168 or i != 169] 
     
     # Sets up which number sets to chose between
-    def Prob_Roll():
-        roll = random.randint(0, 34)
-        return roll
+    def Prob_Roll(self):
+        return random.randint(0, 34)
+    
+    def your_out(self):
+        roll = self.Prob_Roll()
+        print(roll)
+        
 
 def main():
     pass 
@@ -104,3 +118,13 @@ def main():
 
 db = BULLS()
 game_2 = db.practice_bulls()
+
+# ro = rand_out()
+# print(f'''{ro.lowEven}
+#       {ro.lowOdd}
+#       {ro.midEven}
+#       {ro.midOdd}
+#       {ro.highOut}
+#       {ro.higherOut}
+#       {ro.crazyOut}
+#       ''')
