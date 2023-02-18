@@ -2,6 +2,7 @@ import random
 
 # Set up class to keep track of how many bulls to throw for and how many points you got
 class BULLS:
+    # Initializes trackers for misses, singles, doubles and total points earned
     def __init__(self):
         self.total_points = 0
         self.throws = 0
@@ -9,10 +10,13 @@ class BULLS:
         self.single = 0
         self.double = 0
     
-    def BullCount(self):
+    
+    def Bull_Count(self):
+        # Asks user to input how many darts will be thrown
         self.throws = int(input('How many darts would you like to throw for bulls?   -----> '))
         countDown = self.throws
         
+        # User inputs what happened when throwing and trackers are updated accordingly
         while countDown > 0:
             print('What did you hit? (0-2)?')
             turnHit = int(input())
@@ -28,9 +32,10 @@ class BULLS:
             self.total_points += turnHit
             countDown -= 1
             print(f'{countDown} throws left... \n')
-        
+    
+    # This calls Bull_Count() and outputs data for the user    
     def practice_bulls(self):
-        self.BullCount()
+        self.Bull_Count()
         print(f'''You got a total of:
     - {self.total_points} point(s) out of {self.throws * 2} possible points
     - {self.single + self.double} Hits out of {self.throws} Darts thrown
@@ -38,7 +43,7 @@ class BULLS:
     - About {int(((self.single + self.double)/self.throws)*100)}% Hit rate''')
 
 # Set up class to keep track of darts thrown for either doubles or triples and how many shots it takes
-class DUB_TRIP( ):           
+class DUB_TRIP:           
     # This is to set up the numbers associated with a dart board
     def dart_board(self):
         darts = [str(i + 1) for i in range(20)]
@@ -79,7 +84,16 @@ class DUB_TRIP( ):
             turns_taken.pop('Bull')
           
         return turns_taken
-            
+
+# Set up class to output a random number between 2-170 with input to show user how many points they have left
+class rand_out:
+    def __init__(self):
+        self.roll = None
+    
+    # Sets up which number sets to chose between
+    def Prob_Roll():
+        roll = random.randint(0, 34)
+        return roll
 
 def main():
     pass 
