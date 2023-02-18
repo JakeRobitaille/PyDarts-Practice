@@ -1,27 +1,44 @@
+import random
+
 # Set up class to keep track of how many bulls to throw for and how many points you got
 class BULLS:
+    def __init__(self):
+        self.total_points = 0
+        self.throws = 0
+        self.miss = 0
+        self.single = 0
+        self.double = 0
     
     def BullCount(self):
-        global throws
-        global points_total
-        points_total = 0
-        throws = int(input('How many darts would you like to throw for bulls?   '))
-        throwCount = throws
+        self.throws = int(input('How many darts would you like to throw for bulls?   -----> '))
+        countDown = self.throws
         
-        while throwCount > 0:
+        while countDown > 0:
             print('What did you hit? (0-2)?')
             turnHit = int(input())
-            points_total += turnHit
-            throwCount -= 1
-        return points_total 
+            if turnHit == 0:
+                print('You Missed')
+                self.miss += 1
+            elif turnHit == 1:
+                print('You hit a Single Bull')
+                self.single += 1
+            elif turnHit == 2:
+                print('You hit a Double Bull')
+                self.double += 1
+            self.total_points += turnHit
+            countDown -= 1
+            print(f'{countDown} throws left... \n')
         
     def practice_bulls(self):
         self.BullCount()
-        print(f'You got a total of {points_total} point(s) out of {throws} darts and {throws * 2} possible points')
+        print(f'''You got a total of:
+    - {self.total_points} point(s) out of {self.throws * 2} possible points
+    - {self.single + self.double} Hits out of {self.throws} Darts thrown
+        + {self.single} Single(s), {self.double} Double(s) and {self.miss} Misses
+    - About {int(((self.single + self.double)/self.throws)*100)}% Hit rate''')
 
 # Set up class to keep track of darts thrown for either doubles or triples and how many shots it takes
-class DUB_TRIP():
-    
+class DUB_TRIP( ):           
     # This is to set up the numbers associated with a dart board
     def dart_board(self):
         darts = [str(i + 1) for i in range(20)]
@@ -34,7 +51,7 @@ class DUB_TRIP():
         hit = False
         
         while hit == False:
-            # Bull has no triple so if the practice type is triple, skips bulls
+            # Bull has no triple so if the practice type is 'triple', auto skips bulls
             if target == 'Bull' and type == 'triple':
                 hit = True
             else:
@@ -65,8 +82,11 @@ class DUB_TRIP():
             
 
 def main():
-    pass
+    pass 
 
-dd = DUB_TRIP()
-game_1 = dd.dart_track('double')
-print(game_1)
+# dd = DUB_TRIP()
+# game_1 = dd.dart_track('triple')
+# print(game_1)
+
+db = BULLS()
+game_2 = db.practice_bulls()

@@ -14,7 +14,7 @@ teamname = 'The Breakfast Club'
 # Setting up the main window
 class MainWindow(wx.Frame):
     def __init__(self, parent, title):
-        super(MainWindow, self).__init__(parent, title=title, size=(950, 600))
+        super(MainWindow, self).__init__(parent, title=title, size=(1080, 650))
         self.Centre()
         self.CreateStatusBar()
         self.create_menu()
@@ -23,7 +23,6 @@ class MainWindow(wx.Frame):
     def menu_items(self, menu, elements):
         for element in elements:
             menu.Append(element[0], element[1], element[2])
-            self.Bind(wx.EVT_LEFT_DOWN, btn_click, menu)
     
     def create_menu(self):
         # Creating the menu options on the main menu bar
@@ -49,10 +48,6 @@ class MainWindow(wx.Frame):
         self.SetMenuBar(menubar)
         self.Show()
 
-
-def btn_click(clicked):
-    if clicked == '&Quit':
-        window.Close()
 
 # Main loop of the application
 app = wx.App(False)
