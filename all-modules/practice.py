@@ -104,6 +104,7 @@ class rand_out:
         for i in range(161, 171, 3):
             self.crazyOut.append(i) 
     
+    # Chooses a random number from the chosen list and outputs that number
     def Num_Output(self, outList):
         self.this_out = random.choice(outList)
         print(f'Your random out is: {self.this_out}')
@@ -146,7 +147,21 @@ class rand_out:
             print('You were unable to out in 3 darts')
             
     def until_out(self):
-        pass
+        roll = random.randint(0, 34)
+        if roll == 0:
+            self.Num_Output(self.crazyOut)
+        elif roll > 0 and roll <= 3:
+            self.Num_Output(self.higherOut)
+        elif roll > 3 and roll <= 8:
+            self.Num_Output(self.lowEven)
+        elif roll > 8 and roll <= 12:
+            self.Num_Output(self.highOut)
+        elif roll > 12 and roll <= 19:
+            self.Num_Output(self.midOdd)
+        elif roll > 19 and roll <= 27:
+            self.Num_Output(self.midEven)
+        else:
+            self.Num_Output(self.lowOdd)
             
         
 def main():
