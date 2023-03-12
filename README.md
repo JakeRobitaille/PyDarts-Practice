@@ -1,2 +1,1 @@
-# dart-tracker
-A collaborative app to track player stats in darts
+Calculates practice stats from user input using python 
