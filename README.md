@@ -13,7 +13,10 @@ clearing the memory from it to start new
 Created by:
     Jake Robitaille
 
-Using Python 3 and VSCode
+Using:
+    Python 3
+    VSC Code
+    Pyinstaller
 
 Version 1.01.01
 4/22/2023
