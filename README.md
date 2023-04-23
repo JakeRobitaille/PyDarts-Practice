@@ -11,12 +11,12 @@ clearing the memory from it to start new
 
 
 Created by:
-    Jake Robitaille
+-Jake Robitaille
 
 Using:
-    Python 3
-    VSC Code
-    Pyinstaller
+-Python 3
+-VSC Code
+-Pyinstaller
 
 Version 1.01.01
 4/22/2023
