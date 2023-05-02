@@ -1,4 +1,3 @@
-import readwrite
 import datetime
 
 # Set up class to keep track of how many bulls to throw for and how many points you got
@@ -45,9 +44,20 @@ class BULLS:
                 countDown -= 1  
     
     # This calls Bull_Count() and outputs data for the user    
-    def practice_bulls(self, file):
+    def practice_bulls(self):
         self.Bull_Count()
-        info = f'      {self.throws}     ,     {self.single + self.double}    ,    {self.single}   ,    {self.double}   ,  {self.miss}   ,      {int(((self.single + self.double)/self.throws)*100)}%     ,     {self.total_points}/{self.throws * 2}        , {datetime.date.today()}\n'
+        date = f'{datetime.date.today()}'
+        gameInfo = {
+            'Darts Thrown': self.throws, 
+            'Darts Hit': self.single + self.double, 
+            'Singles': self.single, 
+            'Doubles': self.double, 
+            'Misses': self.miss, 
+            'Average Hit %': f'{int(((self.single + self.double)/self.throws)*100)}%', 
+            'Points Out of Total': f'{self.total_points}/{self.throws * 2}', 
+            'Date': date
+        }
+        
         print(f'''\nYou got {self.total_points} point(s) out of {self.throws * 2} possible points
 {self.single + self.double} Total hits out of {self.throws} Darts thrown
 {self.single} Single(s) hit 
@@ -55,5 +65,5 @@ class BULLS:
 {self.miss} Misses
 About {int(((self.single + self.double)/self.throws)*100)}% Hit rate''')
         
-        readwrite.writeTo(file, info)
         print('\n------ PRACTICE SAVED TO HISTORY ------\n')
+        return gameInfo

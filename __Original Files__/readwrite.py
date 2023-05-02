@@ -1,33 +1,42 @@
-def writeTo(file, info):
-    a = open(file, 'a')
-    a.write(info)
+import json
+
+# The process for opening a JSON file and returning it as a Python Dict
+def getFromFile():
+    r = open('game-stats.json', 'r')
+    json_data = json.loads(r)
+    r.close()
+    return json_data
+
+def writeTo(type, info):
+    fileData = getFromFile()
+    a = open('game-stats.json', 'a')
+        
+    if type == 'bull':
+        fileData["Bulls"].append(info)
+    elif type == 'double':
+        fileData["Doubles"].append(info)
+    elif type == 'triple':
+        fileData["Triples"].append(info)
+    elif type == 'randout':
+        fileData["RandOut"].append(info)
+        
+    toAdd = json.dumps(fileData, indent=2, separators=(',', ' : '))
+    a.write(toAdd)
     a.close()
 
-
-def readFrom(file):
-    r = open(file, 'r')
-    fileOutput = r.read()
-    print(fileOutput)
-    r.close()
-
-
-def clearHistory(file, type):
-    bullContent = 'Darts Thrown, Darts Hit, Singles, Doubles, Misses, Average Hit %, Points Out of Total, Date\n'
-    doubleContent = '1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, Bull, Date\n'
-    tripleContent = '1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, Date\n'
-    randOutContent = 'Random Number, Out In 3?, Darts to Out, Date\n'
+# The process of reading out from and closing a file
+def readFrom(type):
+    json_read = getFromFile()
+    output = json.loads(json_read)
     
-    ch = open(file, 'w')  
-  
-    if type == 'bulls':
-        ch.write(bullContent)
-    elif type == 'doubles':
-        ch.write(doubleContent)
-    elif type == 'triples':
-        ch.write(tripleContent)
+    if type == 'bull':
+        print(output["Bulls"])
+    elif type == 'double':
+        print(output["Doubles"])
+    elif type == 'triple':
+        print(output["Triples"])
     elif type == 'randout':
-        ch.write(randOutContent)
-    else:
-        print('There is no type specified.')
+        print(output["RandOut"])
     
-    ch.close()
+    
+    

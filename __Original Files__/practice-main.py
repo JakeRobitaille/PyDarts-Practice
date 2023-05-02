@@ -1,7 +1,7 @@
 import bulls
 import doublestriples
 import randout
-import readwrite
+import stats
 import os
 
 cls = lambda: os.system('cls')
@@ -48,13 +48,13 @@ def endOfMenu():
     input('######## click ENTER to continue ########')
     cls()
        
-#  Plays Bulls practice and appends the info on a csv file
+#  Plays Bulls practice and appends the info on a json file
 def playBulls():  
     cls()  
     answer = basicGameMenu()
     if answer == '1':
         cls()
-        bulls.BULLS().practice_bulls('../tracking-files/bulls.csv')
+        stats.addInfo('bull-games.json', bulls.BULLS().practice_bulls())
         endOfMenu()
     elif answer == '2':
         cls()
@@ -131,7 +131,7 @@ def playUntilOut():
 def historyMenu():
     def outputProcess(file):
         cls()
-        readwrite.readFrom(file)
+        # readwrite.readFrom(file)
         endOfMenu()
         historyMenu()
     
@@ -168,7 +168,7 @@ All practices are formatted as a CSV (comma seperated values) file.
 def clearHistoryMenu():
     def clearHistoryProcess(file, type):
         cls()
-        readwrite.clearHistory(file, type)
+        # readwrite.clearHistory(file, type)
        
         if type == 'bulls':
             fileType = 'BULLS'
@@ -207,10 +207,10 @@ def clearHistoryMenu():
         clearHistoryProcess('../tracking-files/random-out.csv', 'randout')
     elif answer == '5':
         cls()
-        readwrite.clearHistory('../tracking-files/bulls.csv', 'bulls')
-        readwrite.clearHistory('../tracking-files/doubles.csv', 'doubles')
-        readwrite.clearHistory('../tracking-files/triples.csv', 'triples')
-        readwrite.clearHistory('../tracking-files/random-out.csv', 'randout')
+        # readwrite.clearHistory('../tracking-files/bulls.csv', 'bulls')
+        # readwrite.clearHistory('../tracking-files/doubles.csv', 'doubles')
+        # readwrite.clearHistory('../tracking-files/triples.csv', 'triples')
+        # readwrite.clearHistory('../tracking-files/random-out.csv', 'randout')
         print('\n-- ALL FILES HAVE BEEN OVERWRITTEN!! --\n')
         endOfMenu()
         mainMenu()
