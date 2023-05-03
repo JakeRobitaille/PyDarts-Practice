@@ -1,7 +1,7 @@
 import bulls
 import doublestriples
 import randout
-import stats
+import readwrite
 import os
 
 cls = lambda: os.system('cls')
@@ -54,7 +54,8 @@ def playBulls():
     answer = basicGameMenu()
     if answer == '1':
         cls()
-        stats.addInfo('bull-games.json', bulls.BULLS().practice_bulls())
+        bullGame = bulls.BULLS.practice_bulls() 
+        readwrite.writeTo('bull', bullGame)
         endOfMenu()
     elif answer == '2':
         cls()
