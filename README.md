@@ -9,14 +9,12 @@ files and can be read through the player history menu as well as
 clearing the memory from it to start new
 
 
-
 Created by:
--Jake Robitaille
+Jake Robitaille
 
-Using:
--Python 3
--VSC Code
--Pyinstaller
+Using: Python 3, VSC Code, Pyinstaller
 
-Version 1.01.01
-4/22/2023
+Current Version 1.02.01
+5/6/2023
+
+Version 1.01.01 on 4/22/2023
