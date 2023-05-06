@@ -19,6 +19,9 @@ class BULLS:
             print('A value is needed to continue...\n')
             self.Bull_Count()
         else:
+            if self.throws == 0:
+                print('Sorry, you have chosen to throw 0 darts. Try again...\n')
+                self.Bull_Count()
             countDown = self.throws
 
         # User inputs what happened when throwing and trackers are updated accordingly
@@ -30,16 +33,16 @@ class BULLS:
             except:
                 print('\nThat is not a valid entry, try again.\n')
             else:
-                if answer == 0:
-                    print('You Missed')
-                    self.miss += 1
-                elif answer == 1:
-                    print('You hit a Single Bull')
-                    self.single += 1
-                elif answer == 2:
-                    print('You hit a Double Bull')
-                    self.double += 1 
-                     
+                match answer:
+                    case 0:
+                        print('You Missed')
+                        self.miss += 1
+                    case 1:
+                        print('You hit a Single Bull')
+                        self.single += 1
+                    case 2:
+                        print('You hit a Double Bull')
+                        self.double += 1          
                 self.total_points += answer
                 countDown -= 1  
     

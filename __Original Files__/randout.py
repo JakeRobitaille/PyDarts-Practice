@@ -6,6 +6,7 @@ import datetime
 class rand_out:
     def __init__(self):
         # Sets up lists with all out possibilities with 3 or less darts 
+        self.gameType = None
         self.this_out = None
         self.this_hit = None
         self.outInThree = False
@@ -46,7 +47,8 @@ class rand_out:
             self.Num_Output(self.lowOdd)
     
     # Player throws three darts to try and out    
-    def three_out(self, file):  
+    def three_out(self): 
+        self.gameType = 'Three Darts To Close' 
         self.Out_Choice()
         # Sets up tracker for points left after something is hit
         outTracker = self.this_out
@@ -78,10 +80,11 @@ class rand_out:
         else:
             self.outInThree = True
             
-        self.writeOut(file)
+        return self.writeOut()
      
     # Player throws until they get an out  
-    def until_out(self, file):
+    def until_out(self):
+        self.gameType = 'Throw Until Close'
         self.Out_Choice()
         outTracker = self.this_out
         dartsTaken = 1
@@ -107,17 +110,26 @@ class rand_out:
             else:
                 print(f'\nYou have {outTracker} points left \n')
         
-        self.writeOut(file)
+        return self.writeOut()
     
                 
-    def writeOut(self, file):
+    def writeOut(self):
+        date = f'{datetime.date.today()}'
+        
         print(f'''\nRandom Number: {self.this_out} 
 Able to out in 3 darts?: {str(self.outInThree)} 
 Darts thrown to out: {self.didOut()}\n''')
         
-        info = f'      {self.this_out}     ,  {str(self.outInThree)}  ,       {self.didOut()}      , {datetime.date.today()}\n'
-        readwrite.writeTo(file, info)
+        gameInfo = {
+            'Game Type' : self.gameType,
+            'Random Out' : self.this_out,
+            'Out in 3?' : str(self.outInThree),
+            'Darts Thrown' : self.didOut(),
+            'Date' : date
+        }
+
         print('\n------ PRACTICE SAVED TO HISTORY ------\n')
+        return gameInfo
         
     
     def didOut(self):

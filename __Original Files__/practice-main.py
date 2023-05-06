@@ -54,8 +54,8 @@ def playBulls():
     answer = basicGameMenu()
     if answer == '1':
         cls()
-        bullGame = bulls.BULLS.practice_bulls() 
-        readwrite.writeTo('bull', bullGame)
+        bullGame = bulls.BULLS() 
+        readwrite.writeTo('Bulls', bullGame.practice_bulls())
         endOfMenu()
     elif answer == '2':
         cls()
@@ -65,13 +65,14 @@ def playBulls():
         endOfMenu()
         playBulls()
      
-# Plays Doubles practice and appends the info on a csv file      
+# Plays Doubles practice and appends the info on a json file      
 def playDoubles():
     cls()
     answer = basicGameMenu()
     if answer == '1':
        cls()
-       doublestriples.DUB_TRIP().dart_track('double', '../tracking-files/doubles.csv')
+       doubleGame = doublestriples.DUB_TRIP()
+       readwrite.writeTo('Doubles', doubleGame.dart_track('double'))       
        endOfMenu()
     elif answer == '2':
         cls()
@@ -81,13 +82,14 @@ def playDoubles():
         endOfMenu()
         playDoubles()
 
-# Plays Triples practice and appends the info on a csv file      
+# Plays Triples practice and appends the info on a json file      
 def playTriples():
     cls()
     answer = basicGameMenu()
     if answer == '1':
         cls()
-        doublestriples.DUB_TRIP().dart_track('triple', '../tracking-files/triples.csv')
+        tripleGame = doublestriples.DUB_TRIP()
+        readwrite.writeTo('Triples', tripleGame.dart_track('triple'))        
         endOfMenu()
     elif answer == '2':
         cls()
@@ -97,13 +99,14 @@ def playTriples():
         endOfMenu()
         playTriples()
   
-# Gives random out to get in 3 darts and appends the info on a csv file
+# Gives random out to get in 3 darts and appends the info on a json file
 def play3Out():
     cls()
     answer = basicGameMenu()
     if answer == '1':
         cls()
-        randout.rand_out().three_out('../tracking-files/random-out.csv')
+        randGame = randout.rand_out()
+        readwrite.writeTo('RandOut', randGame.three_out())
         endOfMenu()
     elif answer == '2':
         cls()
@@ -113,13 +116,14 @@ def play3Out():
         endOfMenu()
         play3Out()
         
-# Gives random out to throw for until you get it and appends the info on a csv file
+# Gives random out to throw for until you get it and appends the info on a json file
 def playUntilOut():
     cls()
     answer = basicGameMenu()
     if answer == '1':
         cls()
-        randout.rand_out().until_out('../tracking-files/random-out.csv')
+        randGame = randout.rand_out()
+        readwrite.writeTo('RandOut', randGame.until_out())
         endOfMenu()
     elif answer == '2':
         cls()
@@ -130,15 +134,14 @@ def playUntilOut():
         playUntilOut()
     
 def historyMenu():
-    def outputProcess(file):
+    def outputProcess(game):
         cls()
-        # readwrite.readFrom(file)
+        readwrite.readFrom(game)
         endOfMenu()
         historyMenu()
     
     cls()
     print('''Which practice stats would you like to view?
-All practices are formatted as a CSV (comma seperated values) file.
           1) Bulls
           2) Doubles            
           3) Triples
@@ -148,41 +151,34 @@ All practices are formatted as a CSV (comma seperated values) file.
           6) Back''')
     answer = input('\nYour Choice (1-6) ------------> ')
     
-    if answer == '1':
-        outputProcess('../tracking-files/bulls.csv')
-    elif answer == '2':
-        outputProcess('../tracking-files/doubles.csv')
-    elif answer == '3':
-        outputProcess('../tracking-files/triples.csv')
-    elif answer == '4':
-        outputProcess('../tracking-files/random-out.csv')
-    elif answer == '5':
-        clearHistoryMenu()
-    elif answer == '6':
-        cls()
-        mainMenu()
-    else:
-        print('\nThat is not a valid option, try again...\n')
-        endOfMenu()
-        historyMenu()
+    match answer:
+        case '1':
+            outputProcess("Bulls")
+        case '2':
+            outputProcess('Doubles')
+        case '3':
+            outputProcess('Triples')
+        case '4':
+            outputProcess('RandOut')
+        case '5':
+            clearHistoryMenu()
+        case '6':
+            cls()
+            mainMenu()
+        case _:
+            print('\nThat is not a valid option, try again...\n')
+            endOfMenu()
+            historyMenu()
      
 def clearHistoryMenu():
-    def clearHistoryProcess(file, type):
+    def clearHistoryProcess(type):
         cls()
-        # readwrite.clearHistory(file, type)
-       
-        if type == 'bulls':
-            fileType = 'BULLS'
-        elif type == 'doubles':
-            fileType = 'DOUBLES'
-        elif type == 'triples':
-            fileType = 'TRIPLES'
-        elif type == 'randout':
-            fileType = 'RANDOM OUT'
-        else:
-            print('There is no type specified.')
+        readwrite.writeOver(type)
             
-        print(f'\n-- YOUR {fileType} FILE HAS BEEN OVERWRITTEN! --\n')
+        if type == 'all':
+            print('\n-- ALL FILES HAVE BEEN OVERWRITTEN!! --\n')
+        else:
+            print(f'\n-- YOUR {type.upper()} GAMES HAVE BEEN OVERWRITTEN! --\n')
         endOfMenu()
         clearHistoryMenu()
         
@@ -199,22 +195,15 @@ def clearHistoryMenu():
     answer = input('\nYour Choice (1-6) ------------> ')
     
     if answer == '1':
-        clearHistoryProcess('../tracking-files/bulls.csv', 'bulls')
+        clearHistoryProcess('Bulls')
     elif answer == '2':
-        clearHistoryProcess('../tracking-files/doubles.csv', 'doubles')
+        clearHistoryProcess('Doubles')
     elif answer == '3':
-        clearHistoryProcess('../tracking-files/triples.csv', 'triples')
+        clearHistoryProcess('Triples')
     elif answer == '4':
-        clearHistoryProcess('../tracking-files/random-out.csv', 'randout')
+        clearHistoryProcess('RandOut')
     elif answer == '5':
-        cls()
-        # readwrite.clearHistory('../tracking-files/bulls.csv', 'bulls')
-        # readwrite.clearHistory('../tracking-files/doubles.csv', 'doubles')
-        # readwrite.clearHistory('../tracking-files/triples.csv', 'triples')
-        # readwrite.clearHistory('../tracking-files/random-out.csv', 'randout')
-        print('\n-- ALL FILES HAVE BEEN OVERWRITTEN!! --\n')
-        endOfMenu()
-        mainMenu()
+        clearHistoryProcess('all')
     elif answer == '6':
         cls()
         historyMenu()
@@ -225,5 +214,5 @@ def clearHistoryMenu():
         
     historyMenu()
         
-# Runs the menu
-mainMenu() 
+# Runs the main application
+mainMenu()
