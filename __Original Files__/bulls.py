@@ -1,4 +1,3 @@
-import readwrite
 import datetime
 
 # Set up class to keep track of how many bulls to throw for and how many points you got
@@ -20,6 +19,9 @@ class BULLS:
             print('A value is needed to continue...\n')
             self.Bull_Count()
         else:
+            if self.throws == 0:
+                print('Sorry, you have chosen to throw 0 darts. Try again...\n')
+                self.Bull_Count()
             countDown = self.throws
 
         # User inputs what happened when throwing and trackers are updated accordingly
@@ -31,23 +33,34 @@ class BULLS:
             except:
                 print('\nThat is not a valid entry, try again.\n')
             else:
-                if answer == 0:
-                    print('You Missed')
-                    self.miss += 1
-                elif answer == 1:
-                    print('You hit a Single Bull')
-                    self.single += 1
-                elif answer == 2:
-                    print('You hit a Double Bull')
-                    self.double += 1 
-                     
+                match answer:
+                    case 0:
+                        print('You Missed')
+                        self.miss += 1
+                    case 1:
+                        print('You hit a Single Bull')
+                        self.single += 1
+                    case 2:
+                        print('You hit a Double Bull')
+                        self.double += 1          
                 self.total_points += answer
                 countDown -= 1  
     
     # This calls Bull_Count() and outputs data for the user    
-    def practice_bulls(self, file):
+    def practice_bulls(self):
         self.Bull_Count()
-        info = f'      {self.throws}     ,     {self.single + self.double}    ,    {self.single}   ,    {self.double}   ,  {self.miss}   ,      {int(((self.single + self.double)/self.throws)*100)}%     ,     {self.total_points}/{self.throws * 2}        , {datetime.date.today()}\n'
+        date = f'{datetime.date.today()}'
+        gameInfo = {
+            'Darts Thrown': self.throws, 
+            'Darts Hit': self.single + self.double, 
+            'Singles': self.single, 
+            'Doubles': self.double, 
+            'Misses': self.miss, 
+            'Average Hit %': f'{int(((self.single + self.double)/self.throws)*100)}%', 
+            'Points Out of Total': f'{self.total_points}/{self.throws * 2}', 
+            'Date': date
+        }
+        
         print(f'''\nYou got {self.total_points} point(s) out of {self.throws * 2} possible points
 {self.single + self.double} Total hits out of {self.throws} Darts thrown
 {self.single} Single(s) hit 
@@ -55,5 +68,5 @@ class BULLS:
 {self.miss} Misses
 About {int(((self.single + self.double)/self.throws)*100)}% Hit rate''')
         
-        readwrite.writeTo(file, info)
         print('\n------ PRACTICE SAVED TO HISTORY ------\n')
+        return gameInfo

@@ -32,26 +32,20 @@ class DUB_TRIP:
         return throwCounter   
     
     # Sets up the target number and darts thrown as key : value pairs in a dictionary            
-    def dart_track(self, type, file):
+    def dart_track(self, type):
         DARTBOARD = self.dart_board()
-        turns_taken = []
-        numberPrint = 1
+        if type == 'triple':
+            DARTBOARD.pop()
+        gameInfo = {}
+        date = f'{datetime.date.today()}'
         
         for num in DARTBOARD:
-            turns_taken.append(self.is_hit(type, num))
+            gameInfo.update({num : self.is_hit(type, num)})
+        gameInfo.update({'Date' : date})
+        
+        print('Your Stats:')
+        for key in gameInfo:
+            print(f'{key} : {gameInfo[key]}')
 
-        if type == 'triple':
-            turns_taken.pop()
-         
-        for i in turns_taken:
-            if numberPrint == 21:
-                numberPrint = 'Bulls'
-                print(f'{type} {str(numberPrint)}: {i} Throw(s)')
-            else:  
-                print(f'{type} {str(numberPrint)}: {i} Throw(s)')
-                numberPrint += 1
-              
-        for i in turns_taken:
-            readwrite.writeTo(file, f'{i}, ') 
-        readwrite.writeTo(file, f'{datetime.date.today()}\n')
         print('\n------ PRACTICE SAVED TO HISTORY ------\n')
+        return gameInfo
