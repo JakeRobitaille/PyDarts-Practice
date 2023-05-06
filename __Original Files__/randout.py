@@ -1,5 +1,4 @@
 import random
-import readwrite
 import datetime
 
 # Set up class to output a random number between 2-170 with input to show user how many points they have left

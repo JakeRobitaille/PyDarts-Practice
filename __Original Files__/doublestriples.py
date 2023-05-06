@@ -1,4 +1,3 @@
-import readwrite
 import datetime
 
 # Set up class to keep track of darts thrown for either doubles or triples and how many shots it takes
