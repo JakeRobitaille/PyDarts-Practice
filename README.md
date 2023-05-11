@@ -14,7 +14,8 @@ Jake Robitaille
 
 Using: Python 3, VSC Code, Pyinstaller
 
-Current Version 1.02.01
-5/6/2023
+Current Version 1.02.02
+5/11/2023
 
 Version 1.01.01 on 4/22/2023
+Version 1.02.01 on 5/6/2023
