@@ -29,7 +29,9 @@ class BULLS:
             print(f'\n{countDown} throws left... ')
             
             try:
-                answer = int(input('What did you hit? -----> '))
+                print('''What did you hit? -----> 
+0 - Miss | 1 - Single | 2 - Double''')
+                answer = int(input())
             except:
                 print('\nThat is not a valid entry, try again.\n')
             else:
@@ -42,7 +44,11 @@ class BULLS:
                         self.single += 1
                     case 2:
                         print('You hit a Double Bull')
-                        self.double += 1          
+                        self.double += 1    
+                    case _:
+                        print("You must choose a number from 0 to 2...\n")
+                        answer = 0
+                        countDown += 1      
                 self.total_points += answer
                 countDown -= 1  
     

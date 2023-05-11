@@ -8,7 +8,7 @@ cls = lambda: os.system('cls')
 
 def mainMenu():
     while True:
-        print('''What option would you like to choose?
+        print('''MAIN MENU:
           
             Practice Games:
             1) Bulls      (Specify a certain number of darts to shoot for bull)
@@ -16,7 +16,8 @@ def mainMenu():
             3) Triples    (Shoot for each number in order until you hit the triple)
             4) 3 Out      (Shoot 3 darts to get out on a random number)
             5) Until Out  (Shoot for a random number until you can get out)
-              
+            
+            Other:  
             6) User History''')
     
         mainMenuOption = input('\nYour Choice (1-6) ------------> ')
@@ -38,7 +39,7 @@ def mainMenu():
             endOfMenu()
 
 def basicGameMenu():
-    print('''Would you like to:
+    print('''Are you sure?
           1) Play
           2) Go Back''')
     answer = input('\nYour Choice (1-2) ------------> ')
@@ -141,13 +142,14 @@ def historyMenu():
         historyMenu()
     
     cls()
-    print('''Which practice stats would you like to view?
+    print('''PLAYER HISTORY:
+          
           1) Bulls
           2) Doubles            
           3) Triples
           4) Random Out (ALL)
           
-          5) Clear History
+          5) Clear History (Choose file)
           6) Back''')
     answer = input('\nYour Choice (1-6) ------------> ')
     
@@ -183,8 +185,10 @@ def clearHistoryMenu():
         clearHistoryMenu()
         
     cls()
-    print('''Which file history would you like to clear?
-    ***THIS CAN NOT BE UNDONE!!***
+    print('''CLEAR HISTORY:
+    
+    Which file history would you like to clear?
+        ***THIS CAN NOT BE UNDONE!!***
           1) bulls.csv
           2) doubles.csv
           3) triples.csv
