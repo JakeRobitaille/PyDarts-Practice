@@ -2,10 +2,28 @@ import json
 
 # The process for opening a JSON file and returning it as a Python Dict
 def getFromFile():
+    try:
+        r = open('game-stats.json', 'r')
+    except:
+        createFile()
+        
     r = open('game-stats.json', 'r')
     json_data = json.load(r)
     r.close()
     return json_data
+
+# Creates a .json file if none exists
+def createFile ():
+    x = open('game-stats.json', 'x')
+    content = {
+        "Bulls" : [],
+        "Doubles" : [],
+        "Triples" : [],
+        "RandOut" : []
+    }
+    baseInfo = json.dumps(content, indent=2, separators=(',', ' : '))
+    x.write(baseInfo)
+    x.close()
 
 def writeTo(type, info):
     fileData = getFromFile()
@@ -24,11 +42,6 @@ def readFrom(game):
     for g in json_read[game]:
         print(f'GAME {i}:')
         print(g, '\n')
-        #       This prints the key value pairs on seperate lines
-        # print('---------')
-        # for key in g:
-        #     print(f'{key} : {g[key]}')
-        # print()
         i += 1    
     
 def writeOver(type):

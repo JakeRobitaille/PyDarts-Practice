@@ -38,10 +38,12 @@ def mainMenu():
             print('\nThat is not a valid option, try again...\n')
             endOfMenu()
 
-def basicGameMenu():
-    print('''Are you sure?
-          1) Play
-          2) Go Back''')
+def basicGameMenu(type):
+    print(f'''{type.upper()} PRACTICE:
+          
+Are you sure?
+      1) Play
+      2) Go Back''')
     answer = input('\nYour Choice (1-2) ------------> ')
     return answer
         
@@ -52,7 +54,7 @@ def endOfMenu():
 #  Plays Bulls practice and appends the info on a json file
 def playBulls():  
     cls()  
-    answer = basicGameMenu()
+    answer = basicGameMenu('Bulls')
     if answer == '1':
         cls()
         bullGame = bulls.BULLS() 
@@ -69,7 +71,7 @@ def playBulls():
 # Plays Doubles practice and appends the info on a json file      
 def playDoubles():
     cls()
-    answer = basicGameMenu()
+    answer = basicGameMenu('Doubles')
     if answer == '1':
        cls()
        doubleGame = doublestriples.DUB_TRIP()
@@ -86,7 +88,7 @@ def playDoubles():
 # Plays Triples practice and appends the info on a json file      
 def playTriples():
     cls()
-    answer = basicGameMenu()
+    answer = basicGameMenu('Triples')
     if answer == '1':
         cls()
         tripleGame = doublestriples.DUB_TRIP()
@@ -103,7 +105,7 @@ def playTriples():
 # Gives random out to get in 3 darts and appends the info on a json file
 def play3Out():
     cls()
-    answer = basicGameMenu()
+    answer = basicGameMenu('Random Number (3 Dart Out)')
     if answer == '1':
         cls()
         randGame = randout.rand_out()
@@ -120,7 +122,7 @@ def play3Out():
 # Gives random out to throw for until you get it and appends the info on a json file
 def playUntilOut():
     cls()
-    answer = basicGameMenu()
+    answer = basicGameMenu('Random Number (Until Out)')
     if answer == '1':
         cls()
         randGame = randout.rand_out()
@@ -189,11 +191,11 @@ def clearHistoryMenu():
     
     Which file history would you like to clear?
         ***THIS CAN NOT BE UNDONE!!***
-          1) bulls.csv
-          2) doubles.csv
-          3) triples.csv
-          4) random-out.csv
-          5) ALL Files
+          1) Bulls
+          2) Doubles
+          3) Triples
+          4) Random Out
+          5) ALL History
           
           6) Back''')
     answer = input('\nYour Choice (1-6) ------------> ')
