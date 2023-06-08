@@ -41,7 +41,7 @@ def mainMenu():
 def basicGameMenu(type):
     print(f'''{type.upper()} PRACTICE:
           
-Are you sure?
+Are you sure you want to play {type}?
       1) Play
       2) Go Back''')
     answer = input('\nYour Choice (1-2) ------------> ')
